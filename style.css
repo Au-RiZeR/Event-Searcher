@@ -39,9 +39,9 @@ button {
 
 #expanded {
     margin: 5px;
-    border: solid black 1px;
+    /* border: solid black 1px;
     border-radius: 10px;
-    background-color: blanchedalmond;
+    background-color: blanchedalmond; */
 }
 
 /* #week {
@@ -60,4 +60,8 @@ button {
     border-radius: 10px;
     background-color: blanchedalmond;
     text-align: center;
+}
+
+img {
+    width: 100%;
 }

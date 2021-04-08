@@ -24,7 +24,12 @@ $(document).ready(function() {
                 let eventName = document.createElement('h4')
                 let div = document.createElement('div')
                 let img = document.createElement('img')
-                $(img).attr('src', element.images[0].url);
+                var highest = element.images.reduce(function(prev, current) {
+                    return prev.width > current.width ? prev : current
+                  }, {});
+                  
+                //   console.log(highest);
+                $(img).attr('src', highest.url);
                 $(div).addClass('event');
                 eventName.textContent = events[i].name;
                 div.appendChild(eventName)
