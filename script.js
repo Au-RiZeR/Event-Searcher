@@ -1,8 +1,8 @@
-$(document).ready(function() {
+$(document).ready(function () {
     const apiKey = "166a433c57516f51dfab1f7edaed8413";
     let city = "perth";
     let main = document.getElementById("expanded")
-    $("button").click(function(e) {
+    $("button").click(function (e) {
         e.preventDefault();
         let input = document.getElementById("input").value;
         city = input;
@@ -12,30 +12,27 @@ $(document).ready(function() {
         console.log(requestUrl);
         weather();
     });
-
     function weather() {
-        fetch(requestUrl).then(function(response) {
+        fetch(requestUrl).then(function (response) {
             return response.json();
-        }).then(function(data) {
-            let events = data._embedded.events
-            console.log(data._embedded.events)
+        }).then(function (data) {
+            let events = data._embedded.events;
+            console.log(data._embedded.events);
             for (let i = 0; i < events.length; i++) {
                 const element = events[i];
-                let eventName = document.createElement('h4')
-                let div = document.createElement('div')
-                let img = document.createElement('img')
-                var highest = element.images.reduce(function(prev, current) {
+                let eventName = document.createElement('h4');
+                let div = document.createElement('div');
+                let img = document.createElement('img');
+                var highRes = element.images.reduce(function (prev, current) {
                     return prev.width > current.width ? prev : current
-                  }, {});
-                  
-                //   console.log(highest);
-                $(img).attr('src', highest.url);
+                }, {});
+                $(img).attr('src', highRes.url);
                 $(div).addClass('event');
-                eventName.textContent = events[i].name;
-                div.appendChild(eventName)
-                div.appendChild(img)
-                main.append(div)
-            }
+                eventName.textContent = element.name;
+                div.appendChild(eventName);
+                div.appendChild(img);
+                main.append(div);
+            };
         });
-    }
+    };
 });
