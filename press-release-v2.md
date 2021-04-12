@@ -2,11 +2,11 @@
 
 TLDR
 
-A trusted place for people who like to go out to find information on LIVE events. With EVENTO you can search for a specific event with our directory, or just browse to see what is on with our friendly filter function. EVENTO also links straight to the appropriate ticketing websites per event, so no chance for scammers! EVENTO is safe, informative and user friendly, all in one click!
+Evento - A trusted place for people who like to go out to find information on LIVE events. With EVENTO you can search for a specific event with our directory, or just browse to see what is on with our friendly filter function. EVENTO also links straight to the appropriate ticketing websites per event, so say GOODBYE to potential scammers or phishers! EVENTO is safe, informative and user friendly, all in one click!
 
 ---
 
-### QUOTES
+### *Testimonials*
 
 "I live in Northam and like to come down to Perth on the weekends, but I was finding it hard to find events without having to search through a series of clicks. I also don't have social media and found it really hard to find events through a google search.
 
@@ -25,17 +25,22 @@ I can now come to Perth and know what live events are on easily and their MAPS f
 
 Background on topic/area
 
-Trying to find a LIVE event to attend gets quite challenging, especially for those of us who just want to browse events to see what is on. Sometimes we want to find something on a certain date because friends from out of town are visiting, or we really feel like going to a Drag show, or want to know what nostalgic bands from the late 90s/2000s are coming to our city. Looking for these LIVE events sends you down a rabbit hole of clicks and random websites loading, having to put in your details when all you want to do is see what is on. 
+Trying to find a LIVE event to attend can be quite challenging, especially for those of us who just want to browse events to see what is on. Currently, there's a heavy reliance on social media to find event information. When you do not want to use social media looking for these LIVE events sends you down a rabbit hole of clicks and opening new tabs to websites, having to put in your details when all you want to do is see what is on.   
+
+Sometimes we want to find something on a certain date because friends from out of town are visiting, or we really feel like going to a Drag show, or want to know what nostalgic bands from the late 90s/2000s are coming to our city.
 
 ---
 
 Summarize: Who & What
 
-EVENTO simplifies the search for LIVE events! Whether it is large scale stadium concerts, to musicals at The Crown Theatre, to a local burlesque show in a Jazz Club, EVENTO has it all. EVENTO is LIVE and ACCESSIBLE; users are given information on the events then and there, EVENTO is also a trusted website, so no scalpers or scammers, you will be directed straight to the appropriate ticketing website for the event. EVENTO a user can find out about the following information on LIVE events:
--Date & Time (and how far away the show it)
--Location (with a google Maps function to show you how to get there)
--approximate price (??)
--Weather (closer to the date)
+EVENTO plans to simplify the search for LIVE events! Whether it is large scale stadium concerts, to musicals at The Crown Theatre, to a local burlesque show in a Jazz Club, EVENTO has it all. EVENTO is LIVE and ACCESSIBLE; users are given information on the events then and there, EVENTO is also a trusted website, so no scalpers, phishers or scammers, you will be directed straight to the appropriate ticketing website for the event. 
+
+On EVENTO a user can find out about the following information on LIVE events:
+
+- Date & Time (and how far away the show it)
+- Location (with a google Maps function to show you how to get there)
+- Approximate price (??)
+- Weather (closer to the date)
 
 With our Browse Events function, users can browse events by:
 - Date & Time
@@ -45,3 +50,6 @@ With our Browse Events function, users can browse events by:
 
 With our Map function, users are also able to access restaurants and bars in the area as well, you can plan your whole day/night out with EVENTO.
 
+** *Price feature to be confirmed*
+
+<!-- Fix up press release to add company name  -->
