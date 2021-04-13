@@ -1,6 +1,6 @@
 # Find LIVE Events near you in ONE CLICK!
 
-TLDR
+April 20 2021
 
 Evento - A trusted place for people who like to go out to find information on LIVE events. With EVENTO you can search for a specific event with our directory, or just browse to see what is on with our friendly filter function. EVENTO also links straight to the appropriate ticketing websites per event, so say GOODBYE to potential scammers or phishers! EVENTO is safe, informative and user friendly, all in one click!
 
@@ -49,6 +49,10 @@ With our Browse Events function, users can browse events by:
 - Genre (including live music, cabaret, drag, burlesque, theatre, LGBTQI+, arts, festivals & sports)
 
 With our Map function, users are also able to access restaurants and bars in the area as well, you can plan your whole day/night out with EVENTO.
+
+This web app is developed by a new upcoming company called The Serotonin Seekers - a company with the goal of improving your lives in whatever small way they can. 
+
+This app is planned to launch on 21 April, 2021. Stay posted for more information
 
 ** *Price feature to be confirmed*
 
