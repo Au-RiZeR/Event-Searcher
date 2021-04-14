@@ -38,8 +38,11 @@ $(document).ready(function () {
                 column.appendChild(div)
                 setTimeout(() => {
                     div.style.backgroundImage = img;
-                    $(div).fadeIn(500);
-                }, i * 50);
+                    $(div).animate({
+                        opacity: '1',
+                        height: '191px',
+                    }, 500)
+                }, i * 100);
             };
         });
     };
