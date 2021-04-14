@@ -20,7 +20,7 @@ $(document).ready(function () {
                 if (count == 4) {
                     count = 1
                 }
-                let  column = document.querySelector(`.column:nth-child(${count})`)
+                let column = document.querySelector(`.column:nth-child(${count})`)
                 const element = events[i];
                 let eventName = document.createElement('h4');
                 let div = document.createElement('div');
@@ -32,15 +32,14 @@ $(document).ready(function () {
                 $(div).addClass('event');
                 eventName.textContent = element.name;
                 div.appendChild(eventName);
-                div.appendChild(img);
-
-                    column.appendChild(div)
-                    setTimeout(() => {
-                        $(div).fadeIn(500);
-                    }, i * 50);
-
-                //   $(`.event`).fadeIn(2000);
-            //querySelector(`.column:nth-child(${count})`).append(div)
+                div.style.backgroundImage = `url('${highRes.url}')`;
+                div.style.backgroundPosition = `center`
+                div.style.backgroundSize = `cover`
+                column.appendChild(div)
+                setTimeout(() => {
+                    div.style.backgroundImage = img;
+                    $(div).fadeIn(500);
+                }, i * 50);
             };
         });
     };
