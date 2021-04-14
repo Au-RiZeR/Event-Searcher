@@ -6,8 +6,6 @@ $(document).ready(function () {
         e.preventDefault();
         let input = document.getElementById("input").value;
         city = input;
-        console.log(city);
-        console.log(input);
         requestUrl = `https://app.ticketmaster.com/discovery/v2/events?apikey=MHiKGa2w6tWsHGkRHBnqvfrxAry3j09d&radius=100&unit=km&locale=*&city=perth&countryCode=AU&stateCode=wa`;
         console.log(requestUrl);
         weather();
@@ -18,7 +16,11 @@ $(document).ready(function () {
         }).then(function (data) {
             let events = data._embedded.events;
             console.log(data._embedded.events);
-            for (let i = 0; i < events.length; i++) {
+            for (i = 0, count = 1; i < events.length; i++, count++) {
+                if (count == 4) {
+                    count = 1
+                }
+                let column = document.querySelector(`.column:nth-child(${count})`)
                 const element = events[i];
                 let eventName = document.createElement('h4');
                 let div = document.createElement('div');
@@ -30,8 +32,17 @@ $(document).ready(function () {
                 $(div).addClass('event');
                 eventName.textContent = element.name;
                 div.appendChild(eventName);
-                div.appendChild(img);
-                main.append(div);
+                div.style.backgroundImage = `url('${highRes.url}')`;
+                div.style.backgroundPosition = `center`
+                div.style.backgroundSize = `cover`
+                column.appendChild(div)
+                setTimeout(() => {
+                    div.style.backgroundImage = img;
+                    $(div).animate({
+                        opacity: '1',
+                        height: '191px',
+                    }, 500)
+                }, i * 100);
             };
         });
     };

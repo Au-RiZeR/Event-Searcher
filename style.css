@@ -1,6 +1,7 @@
 body {
     text-align: center;
     background-color: lightgray;
+    min-height: 100vh;
 }
 
 header {
@@ -60,8 +61,16 @@ button {
     border-radius: 10px;
     background-color: blanchedalmond;
     text-align: center;
+    height: 0px;
+    opacity: 0;
+    /* display: ; */
 }
 
 img {
     width: 100%;
+}
+
+h4 {
+    color: white;
+    text-shadow: 1px 1px 10px black;
 }
