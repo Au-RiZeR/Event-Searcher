@@ -18,7 +18,7 @@ $(document).ready(function () {
         }).then(function (data) {
             let events = data._embedded.events;
             console.log(data._embedded.events);
-            for (let i = 0; i < events.length; i++) {
+            for (i = 0, count = 1; i < events.length; i++, count++) {
                 const element = events[i];
                 let eventName = document.createElement('h4');
                 let div = document.createElement('div');
@@ -31,7 +31,10 @@ $(document).ready(function () {
                 eventName.textContent = element.name;
                 div.appendChild(eventName);
                 div.appendChild(img);
-                main.append(div);
+                if (count == 4) {
+                    count = 1
+                }
+                document.querySelector(`.column:nth-child(${count})`).append(div)
             };
         });
     };
