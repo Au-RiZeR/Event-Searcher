@@ -12,18 +12,6 @@ header {
     color: white;
 }
 
-/* main {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-}
-
-nav {
-    grid-column-start: 1;
-    grid-column-end: 2;
-    height: auto;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-} */
-
 #search {
     height: 55px;
     display: flex;
@@ -43,19 +31,7 @@ button {
 
 #expanded {
     margin: 5px;
-    /* border: solid black 1px;
-    border-radius: 10px;
-    background-color: blanchedalmond; */
 }
-
-/* #week {
-    padding: 5px;
-    grid-column-start: 2;
-    grid-column-end: 6;
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    grid-template-columns: 1fr 1fr 1fr;
-} */
 
 .event {
     padding: 5px;
@@ -66,16 +42,15 @@ button {
     text-align: center;
     height: 0px;
     opacity: 0;
-    /* display: ; */
 }
 
 img {
     width: 100%;
 }
 
-h4 {
+h3 {
     color: white;
-    text-shadow: 1px 1px 10px black;
+    text-shadow: 2px 2px 2px black;
 }
 
 .hidden {
