@@ -1,6 +1,7 @@
 $(document).ready(function () {
     const apiKey = "MHiKGa2w6tWsHGkRHBnqvfrxAry3j09d";
     let city = "perth";
+    const googleApi = 'AIzaSyB--9um6iLDl4i8GW9df65UqfPtjuc-DMI';
     $("button").click(function (e) {
         e.preventDefault();
         let input = document.getElementById("input").value;
@@ -9,15 +10,15 @@ $(document).ready(function () {
     });
 
     function location() {
-        fetch(`http://api.geonames.org/searchJSON?q=${city}&maxRows=1&username=airier`).then(function (response) {
+        
+        fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=${googleApi}`).then(function (response) {
             return response.json();
         }).then(function (data) {
-            console.log(data)
-            let origin = `${data.geonames[0].lat},${data.geonames[0].lng}`
-            console.log(data.geonames[0].countryCode)
+            var googleResult = data.results[0].geometry.location
+            var origin = `${googleResult.lat},${googleResult.lng}`
             let requestUrl = `https://app.ticketmaster.com/discovery/v2/events?apikey=${apiKey}&latlong=${origin}&radius=400&unit=km&locale=*`
 
-                weather();
+            weather();
             function weather() {
                 fetch(requestUrl).then(function (response1) {
                     return response1.json();
