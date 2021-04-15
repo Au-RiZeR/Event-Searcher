@@ -2,6 +2,7 @@ $(document).ready(function () {
     const apiKey = "MHiKGa2w6tWsHGkRHBnqvfrxAry3j09d";
     let city = "perth";
     const googleApi = 'AIzaSyB--9um6iLDl4i8GW9df65UqfPtjuc-DMI';
+    let count = 1
     $("button").click(function (e) {
         e.preventDefault();
         let input = document.getElementById("input").value;
@@ -26,7 +27,7 @@ $(document).ready(function () {
                     console.log(data2)
                     let events = data2._embedded.events;
                     console.log(data2._embedded.events);
-                    for (i = 0, count = 1; i < events.length; i++, count++) {
+                    for (i = 0; i < events.length; i++, count++) {
                         if (count == 4) {
                             count = 1
                         }
