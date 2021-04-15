@@ -13,10 +13,13 @@ header {
 }
 
 #search {
-    height: 55px;
+    height: 70vh;
     display: flex;
+    flex-direction: column;
     border: solid black 1px;
     border-radius: 10px;
+    align-items: center;
+    
 }
 
 input {
