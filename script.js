@@ -18,6 +18,9 @@ $(document).ready(function () {
     });
 
     function location() {
+        $('#search').animate({
+            height: '10vh'
+        },1000)
         // requests google API
         fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=${googleApi}`).then(function (response) {
             // turning request into object we can select easier
@@ -57,6 +60,7 @@ $(document).ready(function () {
                         // jquery to assign attributes and classes to the variables we just made
                         $(img).attr('src', highRes.url);
                         $(div).addClass('event');
+                        $(eventName).addClass('name');
                         eventName.textContent = event.name;
                         div.appendChild(eventName);
                         div.style.backgroundImage = `url('${highRes.url}')`;
@@ -70,8 +74,31 @@ $(document).ready(function () {
                             }, 500)
                         }, i * 100);
                     };
+                    // $(".event").hover(function (e) {
+
+                    //     var chosen = $(e)
+                    //     chosen = chosen[0].target
+                    //     title = $(chosen).find("h3")[0]
+                    //     console.log(title)
+                    //     $(title).animate({
+                    //         transform: 'rotate(360deg)'
+                    //     }, 500)
+                        
+                        
+                    // }, function () {
+                    //     // out
+                    // }
+                // );
                 });
             };
         })
     }
+
+
+
+
+
+
+
+
 });
