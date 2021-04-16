@@ -23,6 +23,7 @@ $(document).ready(function () {
         $('#search').animate({
             height: '10vh'
         },1000)
+        $('#searchButton').addClass("is-loading")
         let input = document.getElementById("input").value;
         // find out what is in input field and assigning that value to input i.e. 'input = mt lawley'
         city = input;
@@ -79,6 +80,7 @@ $(document).ready(function () {
                                 height: '191px',
                             }, 500)
                         }, i * 100);
+                        $('#searchButton').removeClass('is-loading');
                     };
                     // $(".event").hover(function (e) {
 
