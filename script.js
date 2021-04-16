@@ -9,20 +9,26 @@ $(document).ready(function () {
     // when search button is clicked
     // e= event/element
     let city;
-    $("button").click(function (e) {
-        e.preventDefault();
-        let input = document.getElementById("input").value;
-        // find out what is in input field and assigning that value to input i.e. 'input = mt lawley'
-        city = input;
-        location()
+
+    $("#input").keyup(function (e) {
+        if (e.keyCode === 13) {
+            location()
+        }
     });
 
+    $("button").click(function (e) {
+        location()
+    });
     function location() {
         $('#search').animate({
             height: '10vh'
         },1000)
+        let input = document.getElementById("input").value;
+        // find out what is in input field and assigning that value to input i.e. 'input = mt lawley'
+        city = input;
         // requests google API
         fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=${googleApi}`).then(function (response) {
+
             // turning request into object we can select easier
             return response.json();
         }).then(function (data) {
