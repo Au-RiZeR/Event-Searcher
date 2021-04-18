@@ -54,6 +54,11 @@ body {
     
 }
 
+.date {
+    display: flex;
+
+}
+
 input {
     height: 50px;
     border-spacing: 10px;

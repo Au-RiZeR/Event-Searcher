@@ -9,8 +9,10 @@ $(document).ready(function () {
     // e= event/element
     let city;
     let prevSearch = "Kashyyyyyyyyyyk"
+    let prevStartDate;
+    let prevEndDate;
 
-    $("#input").keyup(function (e) {
+    $("input").keyup(function (e) {
         if (e.keyCode === 13) {
             location()
             // get enter to work to submit "search events" button
@@ -44,12 +46,25 @@ $(document).ready(function () {
         location()
     });
     function location() {
-        
+        var startDate = function () {
+            if($('#start-date').val() != null) {
+                `&startDateTime=${$('#start-date').val()}T00:01:00Z`
+                
+            };
+            
+        }  
+            console.log(startDate)
+           
+            var endDate = `${$('#end-date').val()}T23:59:00Z`;
+            console.log(endDate)
+            // template literal allows variables within strings i.e T001:01:00Z is placed after the value of startDate
+            // variables had to be before if conditions check below as JS did not know the date values until after the check was done.
+       
        
         let input = document.getElementById("input").value;
         // find out what is in input field and assigning that value to input i.e. 'input = mt lawley'
         city = input;
-        if (city != prevSearch) {
+        if (city != prevSearch || startDate != prevStartDate || endDate != prevEndDate) {
             
         
         if (!city) {
@@ -100,7 +115,10 @@ $(document).ready(function () {
             $('#searchButton').removeClass('is-danger');
             $('#searchButton').addClass('is-success');
             $('#search').animate({
-                height: '10vh'
+                height: '20vh'
+            },1000)
+            $('input').animate({
+                height: '23px'
             },1000)
             $('#searchButton').addClass("is-loading")
 
@@ -119,8 +137,11 @@ $(document).ready(function () {
             // `= putting 2 variables (latitidue & longitude) into a string
             var origin = `${googleResult.lat},${googleResult.lng}`
             // creating a variable from ticketmaster API URL 
+            
+            
+            // Date format in YYYY-MM-DD - No need to reformat in JS to match ticketmaster API
             // ? is start of parameter, & = start of another parameter
-            let requestEventUrl = `https://app.ticketmaster.com/discovery/v2/events?apikey=${apiKey}&latlong=${origin}&radius=400&unit=km&locale=*`
+            let requestEventUrl = `https://app.ticketmaster.com/discovery/v2/events?apikey=${apiKey}&latlong=${origin}&radius=50&unit=km&locale=*${startDate}&endDateTime=${endDate}`
 
             requestEvents();
             function requestEvents() {
@@ -166,6 +187,8 @@ $(document).ready(function () {
                     };
 
                     prevSearch = city
+                    prevStartDate = startDate
+                    prevEndDate = endDate
                     // $(".event").hover(function (e) {
 
                     //     var chosen = $(e)
