@@ -46,19 +46,27 @@ $(document).ready(function () {
         location()
     });
     function location() {
-        var startDate = function () {
+        var getStartDate = function () {
             if($('#start-date').val() != null) {
-                `&startDateTime=${$('#start-date').val()}T00:01:00Z`
-                
-            };
-            
-        }  
-            console.log(startDate)
-           
-            var endDate = `${$('#end-date').val()}T23:59:00Z`;
-            console.log(endDate)
-            // template literal allows variables within strings i.e T001:01:00Z is placed after the value of startDate
-            // variables had to be before if conditions check below as JS did not know the date values until after the check was done.
+                return `&startDateTime=${$('#start-date').val()}T00:01:00Z`
+            }
+            return ""
+        }
+        var getEndDate = function () {
+            if($('#end-date').val() != null) {
+                return `&endDateTime=${$('#end-date').val()}T23:59:00Z`
+            }
+            return ""
+        }
+        var endDate = getEndDate();
+        var startDate = getStartDate();
+
+        console.log(startDate())
+        
+        var endDate = `${$('#end-date').val()}T23:59:00Z`;
+        console.log(endDate)
+        // template literal allows variables within strings i.e T001:01:00Z is placed after the value of startDate
+        // variables had to be before if conditions check below as JS did not know the date values until after the check was done.
        
        
         let input = document.getElementById("input").value;
@@ -141,7 +149,7 @@ $(document).ready(function () {
             
             // Date format in YYYY-MM-DD - No need to reformat in JS to match ticketmaster API
             // ? is start of parameter, & = start of another parameter
-            let requestEventUrl = `https://app.ticketmaster.com/discovery/v2/events?apikey=${apiKey}&latlong=${origin}&radius=50&unit=km&locale=*${startDate}&endDateTime=${endDate}`
+            let requestEventUrl = `https://app.ticketmaster.com/discovery/v2/events?apikey=${apiKey}&latlong=${origin}&radius=50&unit=km&locale=*${startDate}${endDate}`
 
             requestEvents();
             function requestEvents() {
