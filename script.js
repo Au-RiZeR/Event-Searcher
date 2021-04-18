@@ -8,10 +8,12 @@ $(document).ready(function () {
     // when search button is clicked
     // e= event/element
     let city;
+    let prevSearch = "Kashyyyyyyyyyyk"
 
     $("#input").keyup(function (e) {
         if (e.keyCode === 13) {
             location()
+            // get enter to work to submit "search events" button
         }
     });
     // Wrap every letter in a span
@@ -36,6 +38,7 @@ $(document).ready(function () {
         offset: '-=875',
         delay: (el, i, l) => 80 * (l - i)
     })
+    // Title animation from https://tobiasahlin.com/moving-letters/#1
     
     $("button").click(function (e) {
         location()
@@ -46,6 +49,9 @@ $(document).ready(function () {
         let input = document.getElementById("input").value;
         // find out what is in input field and assigning that value to input i.e. 'input = mt lawley'
         city = input;
+        if (city != prevSearch) {
+            
+        
         if (!city) {
             $('#searchButton').removeClass('is-success');
             $('#searchButton').addClass('is-danger');
@@ -55,41 +61,29 @@ $(document).ready(function () {
             
         }
         else {
-            // for (i = 0; i < 20; i++, count++) {
-            //     if (count == 4) {
-            //         count = 1
+            // for (let c = 1; c <= 3; c++) {
+            //     var columnC = $(`.column:nth-child(${c})`)
+            //     console.log(columnC[0].childNodes.length)
+            //     // ColumnC was in an Array by itself. Had to identiy the Array number [0] before diverting to childNodes.length.
+            //     for (i = 0; i < columnC[0].childNodes.length; i++) {
+            //         // chooses the column the event will be put in
+            //         let divC = columnC[0].childNodes.querySelector(`.event:nth-child(${i})`)
+            //         // based on the count number - manipulate that column/element
+            //         setTimeout(() => {
+            //             $(divC).animate({
+            //                 opacity: '0',
+            //                 height: '0px',
+            //                 // reverse the animatation - see ln 158
+            //             }, 500)
+            //         }, i * 100);
+
             //     }
-            //     // chooses the column the event will be put in
-            //     let column = document.querySelector(`.column:nth-child(${count})`)
-            //     // based on the count number - manipulate that column/element
-            //     const event = events[i];
-            //     let eventName = document.createElement('h3');
-            //     let div = document.createElement('div');
-            //     let img = document.createElement('img');
-            //     // selects highest res image
-            //     var highRes = event.images.reduce(function (prev, current) {
-            //         return prev.width > current.width ? prev : current
-            //     }, {});
-            //     // jquery to assign attributes and classes to the variables we just made
-            //     $(img).attr('src', highRes.url);
-            //     $(div).addClass('event');
-            //     $(eventName).addClass('name');
-            //     eventName.textContent = event.name;
-            //     div.appendChild(eventName);
-            //     div.style.backgroundImage = `url('${highRes.url}')`;
-            //     div.style.backgroundPosition = `center`
-            //     div.style.backgroundSize = `cover`
-            //     column.appendChild(div)
-            //     setTimeout(() => {
-            //         $(div).animate({
-            //             opacity: '1',
-            //             height: '191px',
-            //         }, 500)
-            //     }, i * 100);
+            // }
 
 
 
-
+        // setTimeout(() => {
+    
             $(".column").remove();
             for (let i = 0; i < 3; i++) {
                 let column = document.createElement('div')
@@ -170,6 +164,8 @@ $(document).ready(function () {
                         $('#searchButton').removeClass('is-loading');
                         $('#searchButton').text("Search Events")
                     };
+
+                    prevSearch = city
                     // $(".event").hover(function (e) {
 
                     //     var chosen = $(e)
@@ -188,7 +184,8 @@ $(document).ready(function () {
                 });
             };
         })
-    }}
+// }, 4000);
+}}}
 
 
 
