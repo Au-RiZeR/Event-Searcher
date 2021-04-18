@@ -5,7 +5,6 @@ $(document).ready(function () {
     // google key
     const googleApi = 'AIzaSyB--9um6iLDl4i8GW9df65UqfPtjuc-DMI';
     // column counter
-    let count = 1;
     // when search button is clicked
     // e= event/element
     let city;
@@ -42,13 +41,78 @@ $(document).ready(function () {
         location()
     });
     function location() {
-        $('#search').animate({
-            height: '10vh'
-        },1000)
-        $('#searchButton').addClass("is-loading")
+        
+       
         let input = document.getElementById("input").value;
         // find out what is in input field and assigning that value to input i.e. 'input = mt lawley'
         city = input;
+        if (!city) {
+            $('#searchButton').removeClass('is-success');
+            $('#searchButton').addClass('is-danger');
+            $('#searchButton').text("Enter Location")
+            // modify text in the button to inform user to add text
+            // if there is no value in city alert user.
+            
+        }
+        else {
+            // for (i = 0; i < 20; i++, count++) {
+            //     if (count == 4) {
+            //         count = 1
+            //     }
+            //     // chooses the column the event will be put in
+            //     let column = document.querySelector(`.column:nth-child(${count})`)
+            //     // based on the count number - manipulate that column/element
+            //     const event = events[i];
+            //     let eventName = document.createElement('h3');
+            //     let div = document.createElement('div');
+            //     let img = document.createElement('img');
+            //     // selects highest res image
+            //     var highRes = event.images.reduce(function (prev, current) {
+            //         return prev.width > current.width ? prev : current
+            //     }, {});
+            //     // jquery to assign attributes and classes to the variables we just made
+            //     $(img).attr('src', highRes.url);
+            //     $(div).addClass('event');
+            //     $(eventName).addClass('name');
+            //     eventName.textContent = event.name;
+            //     div.appendChild(eventName);
+            //     div.style.backgroundImage = `url('${highRes.url}')`;
+            //     div.style.backgroundPosition = `center`
+            //     div.style.backgroundSize = `cover`
+            //     column.appendChild(div)
+            //     setTimeout(() => {
+            //         $(div).animate({
+            //             opacity: '1',
+            //             height: '191px',
+            //         }, 500)
+            //     }, i * 100);
+
+
+
+
+            $(".column").remove();
+            for (let i = 0; i < 3; i++) {
+                let column = document.createElement('div')
+                $(column).addClass('column');
+                // looping and doing this 3 times
+                // adding new div element and column class to eventually replace old searches and start fresh
+                $('#expanded').append(column);
+            }
+            let count = 1;
+            // On a new search - always create div element in the first column
+
+            
+            
+            $('#searchButton').removeClass('is-danger');
+            $('#searchButton').addClass('is-success');
+            $('#search').animate({
+                height: '10vh'
+            },1000)
+            $('#searchButton').addClass("is-loading")
+
+            // if there is nothing in city dont execute search - else add the loading class and continue.
+
+        
         // requests google API
         fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=${googleApi}`).then(function (response) {
 
@@ -78,6 +142,7 @@ $(document).ready(function () {
                         }
                         // chooses the column the event will be put in
                         let column = document.querySelector(`.column:nth-child(${count})`)
+                        // based on the count number - manipulate that column/element
                         const event = events[i];
                         let eventName = document.createElement('h3');
                         let div = document.createElement('div');
@@ -103,6 +168,7 @@ $(document).ready(function () {
                             }, 500)
                         }, i * 100);
                         $('#searchButton').removeClass('is-loading');
+                        $('#searchButton').text("Search Events")
                     };
                     // $(".event").hover(function (e) {
 
@@ -122,7 +188,7 @@ $(document).ready(function () {
                 });
             };
         })
-    }
+    }}
 
 
 
