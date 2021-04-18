@@ -45,26 +45,26 @@ $(document).ready(function () {
     $("button").click(function (e) {
         location()
     });
+   
     function location() {
         var getStartDate = function () {
-            if($('#start-date').val() != null) {
+            if($('#start-date').val() != "") {
                 return `&startDateTime=${$('#start-date').val()}T00:01:00Z`
             }
             return ""
         }
         var getEndDate = function () {
-            if($('#end-date').val() != null) {
+            if($('#end-date').val() != "") {
                 return `&endDateTime=${$('#end-date').val()}T23:59:00Z`
             }
             return ""
         }
+        // return "" = empty in that section of the API parameters (eg. &startDateTime=)
         var endDate = getEndDate();
         var startDate = getStartDate();
 
-        console.log(startDate())
+        console.log(startDate)
         
-        var endDate = `${$('#end-date').val()}T23:59:00Z`;
-        console.log(endDate)
         // template literal allows variables within strings i.e T001:01:00Z is placed after the value of startDate
         // variables had to be before if conditions check below as JS did not know the date values until after the check was done.
        
