@@ -252,6 +252,8 @@ $(document).ready(function () {
                                             const event = events[i];
                                             let eventName = document.createElement('h3');
                                             let div = document.createElement('div');
+                                            // created "a" element
+                                            let a = document.createElement('a');
                                             let img = document.createElement('img');
                                             // selects highest res image
                                             var highRes = event.images.reduce(function (prev, current) {
@@ -259,10 +261,14 @@ $(document).ready(function () {
                                             }, {});
                                             // jquery to assign attributes and classes to the variables we just made
                                             $(img).attr('src', highRes.url);
+                                            // gave "a" element url
+                                            $(a).attr('href', event.url);
                                             $(div).addClass('event');
                                             $(eventName).addClass('name');
                                             eventName.textContent = event.name;
-                                            div.appendChild(eventName);
+                                            // attached "a" to div
+                                            div.appendChild(a);
+                                            a.appendChild(eventName);
                                             div.style.backgroundImage = `url('${highRes.url}')`;
                                             div.style.backgroundPosition = `center`
                                             div.style.backgroundSize = `cover`
