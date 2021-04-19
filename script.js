@@ -11,7 +11,13 @@ $(document).ready(function () {
     let prevSearch = "Kashyyyyyyyyyyk"
     let prevStartDate;
     let prevEndDate;
-
+    getLocalStorage()
+    function getLocalStorage() {
+        if (localStorage.getItem('search')) {
+            prevSearch = localStorage.getItem('search')
+            $('#input').val(prevSearch);
+        }
+    }
     $("input").keyup(function (e) {
         if (e.keyCode === 13) {
             location()
@@ -192,7 +198,7 @@ $(document).ready(function () {
                                 $('#searchButton').removeClass('is-loading');
                                 $('#searchButton').text("Search Events")
                             };
-
+                            localStorage.setItem('search', city)
                             prevSearch = city
                             prevStartDate = startDate
                             prevEndDate = endDate
