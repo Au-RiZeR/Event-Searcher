@@ -257,7 +257,6 @@ $(document).ready(function () {
                                     });
                                 };
                             })
-                            let lastColumn = $(`.column:nth-child(${2})`)
 
                         }, checkIfEventsExist())
                     };
