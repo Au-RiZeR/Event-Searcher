@@ -245,7 +245,7 @@ $(document).ready(function () {
                                             } else {
                                                 $('#back').removeAttr('disabled');
                                             }
-                                            if (page < searchPages) {
+                                            if (page < searchPages-1) {
                                                 $('#next').removeAttr('disabled');
                                             }
                                         };
