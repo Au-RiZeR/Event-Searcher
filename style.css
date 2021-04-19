@@ -96,3 +96,15 @@ h3 {
 .hidden {
     display: none;
 }
+
+.button {
+    margin: 5px;
+}
+
+#pageNav {
+    display: flex;
+}
+
+#currentLocale {
+    /* height: 50px; */
+}
