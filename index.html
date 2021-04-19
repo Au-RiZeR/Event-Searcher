@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+    
 </head>
 
 <body>
@@ -27,11 +28,16 @@
             <div class= "is-justify-content-center" id="search">
                 <input type="text" id="input" placeholder="Type Your Location Here">
                 <div id= "date">
-                    <input type="date" id="start-date">
-                    <input type="date" id="end-date">
+                    <input type="date" id="start-date" placeholder="yyyy-mm-dd">
+                    <input type="date" id="end-date" placeholder="yyyy-mm-dd">
                 </div>
                 <!-- Bulma to apply styles with classes -->
-                <button class="button is-success is-dark is-large is-rounded" id='searchButton'>Search Events</button>
+                <span class="level" id='pageNav'>
+                    <button class="button is-success" id='back' disabled><span class="icon"><i class="fas fa-arrow-left"></i></span></button>
+                    <button class="button is-success is-dark is-large is-rounded" id='searchButton'>Search Events</button>
+                    <button class="button is-success" id='next' disabled><span class="icon"><i class="fas fa-arrow-right"></i></span></button>
+                </span>
+
             </div>
         </nav>
         <div id="expanded" class="columns">
@@ -43,6 +49,7 @@
         <!-- to add columns for the images we will need to add a column contatiner (div) and add class when also creating the element under ln-25 of JS - see https://bulma.io/documentation/columns/basics/ -->
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <script src="https://kit.fontawesome.com/9cd729a254.js" crossorigin="anonymous"></script>
     <script>
         let autocomplete;
         function initAutocomplete() {
