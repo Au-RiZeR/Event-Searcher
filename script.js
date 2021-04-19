@@ -238,3 +238,7 @@ var checkIfEventsExist = function () {
 
 
 });
+
+// link event to modal button (specified in html)
+// select event, modal pops up with Event title, date & time, a button that says "buy tickets" (which links to ticket master website) & a map 
+// need to let users know they will be leaving the website when the click the "buy tickets" button https://www.solodev.com/blog/web-design/how-to-make-an-external-link-pop-up-modal.stml
