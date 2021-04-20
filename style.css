@@ -39,16 +39,11 @@ body {
   
   .ml1 .line1 { top: 0; }
   .ml1 .line2 { bottom: 0; }
-/* header {
-    background-color: lightslategray;
-    color: white;
-} */
 
 #search {
     height: 70vh;
     display: flex;
     flex-direction: column;
-    /* border: solid black 1px; */
     border-radius: 10px;
     align-items: center;
     
@@ -56,7 +51,6 @@ body {
 
 .date {
     display: flex;
-
 }
 
 input {
@@ -64,9 +58,6 @@ input {
     border-spacing: 10px;
     border-radius: .5rem;
     border-color: indigo;
-    /* border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px; */
-
 }
 
 #expanded {
@@ -78,7 +69,7 @@ input {
     margin: 5px;
     border: solid black 1px;
     border-radius: 10px;
-    background-color: blanchedalmond;
+    background-color: black;
     text-align: center;
     height: 0px;
     opacity: 0;
@@ -105,6 +96,18 @@ h3 {
     display: flex;
 }
 
-#currentLocale {
-    /* height: 50px; */
+.links {
+    height: 100%;
+    display: flex;
+    opacity: 0;
+    align-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.links > a {
+    text-shadow: 0px 0px 4px black;
+    text-decoration: none;
+    color: white;
+    font-size: 30px;
 }
