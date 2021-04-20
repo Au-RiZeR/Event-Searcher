@@ -19,7 +19,6 @@ $(document).ready(function () {
             return response.json();
         }).then(function (data) {
             // shows result of search
-            console.log(data)
             var currentAddress = data.results[0].formatted_address
             $('#input').val(currentAddress);
         })
@@ -108,13 +107,11 @@ $(document).ready(function () {
 
         $('#back').click(function (e) {
             e.preventDefault();
-            console.log('back')
             page--
             placeholderFunc()
         });
         $('#next').click(function (e) {
             e.preventDefault();
-            console.log('next')
             page++
             placeholderFunc()
         });
@@ -122,7 +119,6 @@ $(document).ready(function () {
         var endDate = getEndDate();
         var startDate = getStartDate();
 
-        console.log(startDate)
 
         // template literal allows variables within strings i.e T001:01:00Z is placed after the value of startDate
         // variables had to be before if conditions check below as JS did not know the date values until after the check was done.
@@ -148,7 +144,6 @@ $(document).ready(function () {
                     $('#next').attr('disabled', '');
                     for (let c = 1; c <= 3; c++) {
                         var columnC = $(`.column:nth-child(${c})`)
-                        console.log(columnC[0].childNodes.length)
                         // ColumnC was in an Array by itself. Had to identiy the Array number [0] before diverting to childNodes.length.
                         for (i = 0; i < columnC[0].childNodes.length; i++) {
                             // chooses the column the event will be put in
@@ -221,7 +216,6 @@ $(document).ready(function () {
                                 return response.json();
                             }).then(function (data) {
                                 // shows result of search
-                                console.log(data)
                                 var googleResult = data.results[0].geometry.location
                                 // `= putting 2 variables (latitidue & longitude) into a string
                                 origin = `${googleResult.lat},${googleResult.lng}`
@@ -237,11 +231,8 @@ $(document).ready(function () {
                                     fetch(requestEventUrl).then(function (ticketMasterResponse) {
                                         return ticketMasterResponse.json();
                                     }).then(function (eventData) {
-                                        console.log(eventData)
                                         let events = eventData._embedded.events;
-                                        console.log(eventData._embedded.events);
                                         let searchPages = eventData.page.totalPages
-                                        console.log(searchPages)
                                         for (i = 0; i < events.length; i++, count++) {
                                             if (count == 4) {
                                                 count = 1
@@ -250,10 +241,18 @@ $(document).ready(function () {
                                             let column = document.querySelector(`.column:nth-child(${count})`)
                                             // based on the count number - manipulate that column/element
                                             const event = events[i];
+                                            let location = event._embedded.venues[0].name
+
                                             let eventName = document.createElement('h3');
                                             let div = document.createElement('div');
+                                            let linksDiv = document.createElement('div')
                                             // created "a" element
-                                            let a = document.createElement('a');
+                                            let ticketAnchor = document.createElement('a');
+                                            let directions = document.createElement('a');
+                                            $(directions).text('Directions');
+                                            $(directions).attr('target', '_blank');
+                                            $(directions).attr('href', `https://www.google.com/maps/dir/?api=1&destination=${location}`);
+
                                             let img = document.createElement('img');
                                             // selects highest res image
                                             var highRes = event.images.reduce(function (prev, current) {
@@ -262,18 +261,33 @@ $(document).ready(function () {
                                             // jquery to assign attributes and classes to the variables we just made
                                             $(img).attr('src', highRes.url);
                                             // gave "a" element url
-                                            $(a).attr('href', event.url);
-                                            $(a).attr('target', '_blank');
+                                            $(ticketAnchor).attr('href', event.url);
+                                            $(ticketAnchor).attr('target', '_blank');
+                                            $(ticketAnchor).text('Buy Tickets');
+                                            $(linksDiv).attr('class', 'links');
                                             $(div).addClass('event');
                                             $(eventName).addClass('name');
                                             eventName.textContent = event.name;
                                             // attached "a" to div
-                                            a.appendChild(div);
                                             div.appendChild(eventName);
+                                            div.appendChild(linksDiv)
+                                            linksDiv.appendChild(ticketAnchor);
+                                            linksDiv.appendChild(directions)
                                             div.style.backgroundImage = `url('${highRes.url}')`;
                                             div.style.backgroundPosition = `center`
                                             div.style.backgroundSize = `cover`
-                                            column.appendChild(a)
+                                            column.appendChild(div)
+                                            $(div).hover(handlerIn, handlerOut)
+                                            function handlerIn() {
+                                                $(linksDiv).animate({
+                                                    opacity: 1,
+                                                }, 500)
+                                            }
+                                            function handlerOut() {
+                                                $(linksDiv).animate({
+                                                    opacity: 0
+                                                }, 200)
+                                            }
                                             setTimeout(() => {
                                                 $(div).animate({
                                                     opacity: '1',
