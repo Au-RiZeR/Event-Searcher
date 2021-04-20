@@ -19,7 +19,6 @@ $(document).ready(function () {
             return response.json();
         }).then(function (data) {
             // shows result of search
-            console.log(data)
             var currentAddress = data.results[0].formatted_address
             $('#input').val(currentAddress);
         })
@@ -30,9 +29,6 @@ $(document).ready(function () {
                 console.log("User denied the request for Geolocation.")
         }
     }
-
-
-
     const apiKey = "MHiKGa2w6tWsHGkRHBnqvfrxAry3j09d";
     // google key
     const googleApi = 'AIzaSyB--9um6iLDl4i8GW9df65UqfPtjuc-DMI';
@@ -45,6 +41,10 @@ $(document).ready(function () {
     let prevStartDate;
     let prevEndDate;
     let page = 1
+    $('input').change(function (e) { 
+        e.preventDefault();
+        $('#searchButton').text("Enter Location")
+    });
     getLocalStorage()
     function getLocalStorage() {
         if (localStorage.getItem('search')) {
@@ -59,18 +59,13 @@ $(document).ready(function () {
             // get enter to work to submit "search events" button
         }
     });
-
     $("#searchButton").click(function () {
         page = 0
         location()
     });
-
-
-
     // Wrap every letter in a span
     var textWrapper = document.querySelector('.ml1 .letters');
     textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-
     anime.timeline({ loop: false })
         .add({
             targets: '.ml1 .letter',
@@ -90,8 +85,6 @@ $(document).ready(function () {
             delay: (el, i, l) => 80 * (l - i)
         })
     // Title animation from https://tobiasahlin.com/moving-letters/#1
-
-
     function location() {
         var getStartDate = function () {
             if ($('#start-date').val() != "") {
@@ -105,50 +98,38 @@ $(document).ready(function () {
             }
             return ""
         }
-
         $('#back').click(function (e) {
             e.preventDefault();
-            console.log('back')
             page--
             placeholderFunc()
         });
         $('#next').click(function (e) {
             e.preventDefault();
-            console.log('next')
             page++
             placeholderFunc()
         });
         // return "" = empty in that section of the API parameters (eg. &startDateTime=)
         var endDate = getEndDate();
         var startDate = getStartDate();
-
-        console.log(startDate)
-
         // template literal allows variables within strings i.e T001:01:00Z is placed after the value of startDate
         // variables had to be before if conditions check below as JS did not know the date values until after the check was done.
-
-
         let input = document.getElementById("input").value;
         // find out what is in input field and assigning that value to input i.e. 'input = mt lawley'
         city = input;
         if (city != prevSearch || startDate != prevStartDate || endDate != prevEndDate) {
             placeholderFunc()
             function placeholderFunc() {
-
                 if (!city) {
                     $('#searchButton').removeClass('is-success');
                     $('#searchButton').addClass('is-danger');
-                    $('#searchButton').text("Enter Location")
                     // modify text in the button to inform user to add text
                     // if there is no value in city alert user.
-
                 }
                 else {
                     $('#back').attr('disabled', '');
                     $('#next').attr('disabled', '');
                     for (let c = 1; c <= 3; c++) {
                         var columnC = $(`.column:nth-child(${c})`)
-                        console.log(columnC[0].childNodes.length)
                         // ColumnC was in an Array by itself. Had to identiy the Array number [0] before diverting to childNodes.length.
                         for (i = 0; i < columnC[0].childNodes.length; i++) {
                             // chooses the column the event will be put in
@@ -164,28 +145,10 @@ $(document).ready(function () {
 
                         }
                     }
-
-
-
-
-
                     $('#searchButton').addClass("is-loading")
                     getEvents()
                     function getEvents() {
                         setTimeout(() => {
-
-
-
-
-
-
-
-
-
-
-
-
-
                             $(".column").remove();
                             for (let i = 0; i < 3; i++) {
                                 let column = document.createElement('div')
@@ -196,9 +159,6 @@ $(document).ready(function () {
                             }
                             let count = 1;
                             // On a new search - always create div element in the first column
-
-
-
                             $('#searchButton').removeClass('is-danger');
                             $('#searchButton').addClass('is-success');
                             $('#search').animate({
@@ -210,80 +170,101 @@ $(document).ready(function () {
                             $('#currentLocale').animate({
                                 height: '23px'
                             }, 1000)
-
                             // if there is nothing in city dont execute search - else add the loading class and continue.
-
-
                             // requests google API
                             fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=${googleApi}`).then(function (response) {
-
                                 // turning request into object we can select easier
                                 return response.json();
                             }).then(function (data) {
+                                $('#searchButton').text("Search Events")
                                 // shows result of search
-                                console.log(data)
                                 var googleResult = data.results[0].geometry.location
                                 // `= putting 2 variables (latitidue & longitude) into a string
                                 origin = `${googleResult.lat},${googleResult.lng}`
                                 // creating a variable from ticketmaster API URL 
-
-
                                 // Date format in YYYY-MM-DD - No need to reformat in JS to match ticketmaster API
                                 // ? is start of parameter, & = start of another parameter
                                 let requestEventUrl = `https://app.ticketmaster.com/discovery/v2/events?apikey=${apiKey}&latlong=${origin}&radius=50&unit=km&locale=*${startDate}${endDate}&page=${page}`
-
                                 requestEvents();
                                 function requestEvents() {
                                     fetch(requestEventUrl).then(function (ticketMasterResponse) {
                                         return ticketMasterResponse.json();
                                     }).then(function (eventData) {
-                                        console.log(eventData)
-                                        let events = eventData._embedded.events;
-                                        console.log(eventData._embedded.events);
-                                        let searchPages = eventData.page.totalPages
-                                        console.log(searchPages)
-                                        for (i = 0; i < events.length; i++, count++) {
-                                            if (count == 4) {
-                                                count = 1
+                                        try {
+                                            let events = eventData._embedded.events;
+                                            var searchPages = eventData.page.totalPages
+                                            for (i = 0; i < events.length; i++, count++) {
+                                                if (count == 4) {
+                                                    count = 1
+                                                }
+                                                // chooses the column the event will be put in
+                                                let column = document.querySelector(`.column:nth-child(${count})`)
+                                                // based on the count number - manipulate that column/element
+                                                const event = events[i];
+                                                let location = event._embedded.venues[0].name
+                                                let eventName = document.createElement('h3');
+                                                let div = document.createElement('div');
+                                                let linksDiv = document.createElement('div')
+                                                // created "a" element
+                                                let ticketAnchor = document.createElement('a');
+                                                let directions = document.createElement('a');
+                                                $(directions).text('Directions');
+                                                $(directions).attr('target', '_blank');
+                                                $(directions).attr('href', `https://www.google.com/maps/dir/?api=1&destination=${location}`);
+                                                let img = document.createElement('img');
+                                                // selects highest res image
+                                                var highRes = event.images.reduce(function (prev, current) {
+                                                    return prev.width > current.width ? prev : current
+                                                }, {});
+                                                // jquery to assign attributes and classes to the variables we just made
+                                                $(img).attr('src', highRes.url);
+                                                // gave "a" element url
+                                                $(ticketAnchor).attr('href', event.url);
+                                                $(ticketAnchor).attr('target', '_blank');
+                                                $(ticketAnchor).text('Buy Tickets');
+                                                $(linksDiv).attr('class', 'links');
+                                                $(div).addClass('event');
+                                                $(eventName).addClass('name');
+                                                eventName.textContent = event.name;
+                                                // attached "a" to div
+                                                div.appendChild(eventName);
+                                                div.appendChild(linksDiv)
+                                                linksDiv.appendChild(ticketAnchor);
+                                                linksDiv.appendChild(directions)
+                                                div.style.backgroundImage = `url('${highRes.url}')`;
+                                                div.style.backgroundPosition = `center`
+                                                div.style.backgroundSize = `cover`
+                                                column.appendChild(div)
+                                                $(div).hover(handlerIn, handlerOut)
+                                                function handlerIn() {
+                                                    $(linksDiv).animate({
+                                                        opacity: 1,
+                                                    }, 500)
+                                                }
+                                                function handlerOut() {
+                                                    $(linksDiv).animate({
+                                                        opacity: 0
+                                                    }, 200)
+                                                }
+                                                setTimeout(() => {
+                                                    $(div).animate({
+                                                        opacity: '1',
+                                                        height: '191px',
+                                                    }, 500)
+                                                }, i * 100);
                                             }
-                                            // chooses the column the event will be put in
-                                            let column = document.querySelector(`.column:nth-child(${count})`)
-                                            // based on the count number - manipulate that column/element
-                                            const event = events[i];
-                                            let eventName = document.createElement('h3');
-                                            let div = document.createElement('div');
-                                            let img = document.createElement('img');
-                                            // selects highest res image
-                                            var highRes = event.images.reduce(function (prev, current) {
-                                                return prev.width > current.width ? prev : current
-                                            }, {});
-                                            // jquery to assign attributes and classes to the variables we just made
-                                            $(img).attr('src', highRes.url);
-                                            $(div).addClass('event');
-                                            $(eventName).addClass('name');
-                                            eventName.textContent = event.name;
-                                            div.appendChild(eventName);
-                                            div.style.backgroundImage = `url('${highRes.url}')`;
-                                            div.style.backgroundPosition = `center`
-                                            div.style.backgroundSize = `cover`
-                                            column.appendChild(div)
-                                            setTimeout(() => {
-                                                $(div).animate({
-                                                    opacity: '1',
-                                                    height: '191px',
-                                                }, 500)
-                                            }, i * 100);
-                                            $('#searchButton').removeClass('is-loading');
-                                            $('#searchButton').text("Search Events")
-                                            if (page == 0) {
-                                                $('#back').attr('disabled', '');
-                                            } else {
-                                                $('#back').removeAttr('disabled');
-                                            }
-                                            if (page < searchPages - 1) {
-                                                $('#next').removeAttr('disabled');
-                                            }
-                                        };
+                                        } catch {
+                                            $('#searchButton').text("No Events Found")
+                                        }
+                                        $('#searchButton').removeClass('is-loading');
+                                        if (page == 0) {
+                                            $('#back').attr('disabled', '');
+                                        } else {
+                                            $('#back').removeAttr('disabled');
+                                        }
+                                        if (page < searchPages - 1) {
+                                            $('#next').removeAttr('disabled');
+                                        }
                                         localStorage.setItem('search', city)
                                         prevSearch = city
                                         prevStartDate = startDate
@@ -299,7 +280,6 @@ $(document).ready(function () {
             }
         }
     }
-
     var checkIfEventsExist = function () {
         if (emptyPage == 0) {
             emptyPage++
@@ -307,14 +287,4 @@ $(document).ready(function () {
         }
         return 950
     }
-
-
-
-
 });
-
-
-
-// link event to modal button (specified in html)
-// select event, modal pops up with Event title, date & time, a button that says "buy tickets" (which links to ticket master website) & a map 
-// need to let users know they will be leaving the website when the click the "buy tickets" button https://www.solodev.com/blog/web-design/how-to-make-an-external-link-pop-up-modal.stml
