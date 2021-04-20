@@ -6,10 +6,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
-    
 </head>
 
 <body>
@@ -17,30 +15,32 @@
         <!-- <h1 class="title is-1">Event-O</h1> -->
         <h1 class="ml1">
             <span class="text-wrapper">
-              <span class="line line1"></span>
-              <span class="letters">EVENT-O</span>
-              <span class="line line2"></span>
+                <span class="line line1"></span>
+                <span class="letters">EVENT-O</span>
+                <span class="line line2"></span>
             </span>
-          </h1>
+        </h1>
     </header>
     <main>
         <nav>
-            <div class= "is-justify-content-center" id="search">
+            <div class="is-justify-content-center" id="search">
                 <span>
                     <input type="text" id="input" placeholder="Type Your Location Here">
                     <button class="button" id='currentLocale'><i class="fas fa-map-marker-alt"></i></button>
                 </span>
-                <div id= "date">
+                <div id="date">
                     <input type="date" id="start-date" placeholder="yyyy-mm-dd">
                     <input type="date" id="end-date" placeholder="yyyy-mm-dd">
                 </div>
                 <!-- Bulma to apply styles with classes -->
                 <span class="level" id='pageNav'>
-                    <button class="button is-success" id='back' disabled><span class="icon"><i class="fas fa-arrow-left"></i></span></button>
-                    <button class="button is-success is-dark is-large is-rounded" id='searchButton'>Search Events</button>
-                    <button class="button is-success" id='next' disabled><span class="icon"><i class="fas fa-arrow-right"></i></span></button>
+                    <button class="button is-success" id='back' disabled><span class="icon"><i
+                                class="fas fa-arrow-left"></i></span></button>
+                    <button class="button is-success is-dark is-large is-rounded" id='searchButton'>Search
+                        Events</button>
+                    <button class="button is-success" id='next' disabled><span class="icon"><i
+                                class="fas fa-arrow-right"></i></span></button>
                 </span>
-
             </div>
         </nav>
         <div id="expanded" class="columns">
@@ -52,20 +52,19 @@
         <div class="modal">
             <div class="modal-background has-background-danger-light"></div>
             <div class="modal-card">
-              <header class="modal-card-head">
-                <p class="modal-card-title">Event Details</p>
-                <button class="delete" aria-label="close"></button>
-              </header>
-              <section class="modal-card-body">
-                <!-- Content ... -->
-              </section>
-              <footer class="modal-card-foot">
-                <button class="button is-success">Save changes</button>
-                <button class="button">Cancel</button>
-              </footer>
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Event Details</p>
+                    <button class="delete" aria-label="close"></button>
+                </header>
+                <section class="modal-card-body">
+                    <!-- Content ... -->
+                </section>
+                <footer class="modal-card-foot">
+                    <button class="button is-success">Save changes</button>
+                    <button class="button">Cancel</button>
+                </footer>
             </div>
-          </div>
-
+        </div>
         <!-- to add columns for the images we will need to add a column contatiner (div) and add class when also creating the element under ln-25 of JS - see https://bulma.io/documentation/columns/basics/ -->
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
@@ -81,15 +80,11 @@
                 }
             )
         }
-
-
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB--9um6iLDl4i8GW9df65UqfPtjuc-DMI&libraries=places&callback=initAutocomplete" async defer></script>  
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB--9um6iLDl4i8GW9df65UqfPtjuc-DMI&libraries=places&callback=initAutocomplete"
+        async defer></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./script.js"></script>
 </body>
 
