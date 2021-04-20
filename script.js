@@ -267,12 +267,12 @@ $(document).ready(function () {
                                             $(eventName).addClass('name');
                                             eventName.textContent = event.name;
                                             // attached "a" to div
-                                            div.appendChild(a);
-                                            a.appendChild(eventName);
+                                            a.appendChild(div);
+                                            div.appendChild(eventName);
                                             div.style.backgroundImage = `url('${highRes.url}')`;
                                             div.style.backgroundPosition = `center`
                                             div.style.backgroundSize = `cover`
-                                            column.appendChild(div)
+                                            column.appendChild(a)
                                             setTimeout(() => {
                                                 $(div).animate({
                                                     opacity: '1',
