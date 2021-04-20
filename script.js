@@ -263,6 +263,7 @@ $(document).ready(function () {
                                             $(img).attr('src', highRes.url);
                                             // gave "a" element url
                                             $(a).attr('href', event.url);
+                                            $(a).attr('target', '_blank');
                                             $(div).addClass('event');
                                             $(eventName).addClass('name');
                                             eventName.textContent = event.name;
